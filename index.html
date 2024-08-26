@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temp Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href= 
+        "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+	<script src= 
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"> 
+	</script> 
+</head>
+<body>
+    <div class="container header">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Caleb's Temp Converter</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container conversionInputs">
+        <div class="row">
+            <div class="col-12 text-center">
+                <br />
+                <input type="text" name="temperatureInput" id="temperatureInput" placeholder="Temperature to Convert">
+                <select name="temperatureInputType" id="temperatureInputType">
+                    <option value="Fahrenheit">Fahrenheit</option>
+                    <option value="Celsius">Celsius</option>
+                    <option value="Kelvin">Kelvin</option>
+                </select>
+                <label for="temperaturesConversionType">convert to:</label>
+                <select name="temperaturesConversionType" id="temperaturesConversionType">
+                    <option value="Fahrenheit">Fahrenheit</option>
+                    <option value="Celsius">Celsius</option>
+                    <option value="Kelvin">Kelvin</option>
+                </select>
+            </div>
+            <div class="col-12 text-center">
+                <br />
+                <input type="button" id="submit" value="Convert Temperature">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <br />
+                <h2 id="resultArea"></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 text-center">
+                <img class="img-fluid" src="https://gifdb.com/images/high/math-lady-meme-original-template-3axzggetn28u8o29.gif" alt="">
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="app.js"></script>
+</html>

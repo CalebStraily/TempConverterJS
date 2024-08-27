@@ -3,6 +3,7 @@ let userTempType = document.getElementById("temperatureInputType");
 let conversionType = document.getElementById("temperaturesConversionType");
 let submitButton = document.getElementById("submit");
 let resultText = document.getElementById("resultArea");
+let resetButton = document.getElementById("reset");
 
 submitButton.addEventListener("click", () =>
 {
@@ -69,4 +70,10 @@ submitButton.addEventListener("click", () =>
                 break;
         }
     }
+})
+
+resetButton.addEventListener("click", () =>
+{
+    userTemperature.value = "";
+    resultText.innerHTML = "";
 })

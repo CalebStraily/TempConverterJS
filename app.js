@@ -8,7 +8,6 @@ let addButton = document.getElementById("addRow");
 let removeButton = document.getElementById("removeRow");
 let inputRows = document.getElementById("inputRows");
 let row = document.getElementsByClassName("new-row")
-
 let rowCount = 1;
 
 addButton.addEventListener("click", () =>
@@ -34,8 +33,6 @@ addButton.addEventListener("click", () =>
                         </select>`;
 
     inputRows.appendChild(newRow);
-
-    console.log(inputRows);
 })
 
 removeButton.addEventListener("click", () =>
@@ -52,67 +49,90 @@ removeButton.addEventListener("click", () =>
 
 submitButton.addEventListener("click", () =>
 {
-    let convertTo = conversionType.value;
-    let convertFrom = userTempType.value;
-    let userTemp = Number(userTemperature.value);
     let convertedValue = 0;
 
-    if (isNaN(userTemp))
+    let userInputs = document.querySelectorAll("#inputRows input");
+    let conversionsFrom = document.querySelectorAll("#temperatureInputType");
+    let conversionsTo = document.querySelectorAll("#temperaturesConversionType");
+
+    let tempInputs = [];
+    let convertFromList = [];
+    let convertToList = [];
+    
+    for (let i = 0; i < userInputs.length; i++)
     {
-        confirm("Can't submit an non number value.");
+        tempInputs.push(Number(userInputs[i].value));
     }
-    else
+    
+    for (let i = 0; i < conversionsFrom.length; i++)
     {
-        //resets the result text to only contain "Result:"
-        resultText.innerHTML = "";
-        
-        switch(convertTo)
+        convertFromList.push(conversionsFrom[i].value);
+    }
+
+    for (let i = 0; i < conversionsTo.length; i++)
+    {
+        convertToList.push(conversionsTo[i].value);
+    }
+
+    //resets the result text to only contain "Result:"
+    resultText.innerHTML = "";
+
+    for (let i = 0; i < inputRows.children.length; i++)
+    {
+        if (isNaN(tempInputs[i]))
         {
-            case "Fahrenheit":
-                switch(convertFrom)
-                {
-                    //Celsius to Fahrenheit Conversion
-                    case "Celsius":
-                        convertedValue = (userTemp * (9/5)) + 32;
-                        resultText.innerHTML += `Result: ${convertedValue.toFixed(2)}°F`;
-                        break;
-                    //Kelvin to Fahrenheit Conversion
-                    case "Kelvin":
-                        convertedValue = (userTemp - 273.15) * (9/5) + 32;
-                        resultText.innerHTML += `Result: ${convertedValue.toFixed(2)}°F`;
-                        break;
-                }
-                break;
-            case "Celsius":
-                switch(convertFrom)
-                {
-                    //Fahrenheit to Celsius Conversion
-                    case "Fahrenheit":
-                        convertedValue = (userTemp - 32) * (5/9);
-                        resultText.innerHTML += `Result: ${convertedValue.toFixed(4)}°C`;
-                        break;
-                    //Kelvin to Celsius Conversion
-                    case "Kelvin":
-                        convertedValue = userTemp - 273.15;
-                        resultText.innerHTML += `Result: ${convertedValue.toFixed(2)}°C`;
-                        break;
-                }
-                break;
-            case "Kelvin":
-                switch(convertFrom)
-                {
-                    //Celsius to Kelvin Conversion
-                    case "Celsius":
-                        convertedValue = userTemp + 273.15;
-                        resultText.innerHTML += `Result: ${convertedValue}K`;
-                        break;
-                    //Fahrenheit to Kelvin Conversion
-                    case "Fahrenheit":
-                        convertedValue = (userTemp - 32) * 5/9 + 273.15;
-                        resultText.innerHTML += `Result: ${convertedValue.toFixed(3)}K`;
-                        break;
-                }
-                break;
+            confirm(`Can't submit an non number value of ${tempInputs[i]}.`);
+        }
+        else
+        {
+            switch(convertToList[i])
+            {
+                case "Fahrenheit":
+                    switch(convertFromList[i])
+                    {
+                        //Celsius to Fahrenheit Conversion
+                        case "Celsius":
+                            convertedValue = (tempInputs[i] * (9/5)) + 32;
+                            resultText.innerHTML += `Result: ${convertedValue.toFixed(2)}°F <br />`;
+                            break;
+                        //Kelvin to Fahrenheit Conversion
+                        case "Kelvin":
+                            convertedValue = (tempInputs[i] - 273.15) * (9/5) + 32;
+                            resultText.innerHTML += `Result: ${convertedValue.toFixed(2)}°F <br />`;
+                            break;
+                    }
+                    break;
+                case "Celsius":
+                    switch(convertFromList[i])
+                    {
+                        //Fahrenheit to Celsius Conversion
+                        case "Fahrenheit":
+                            convertedValue = (tempInputs[i] - 32) * (5/9);
+                            resultText.innerHTML += `Result: ${convertedValue.toFixed(4)}°C <br />`;
+                            break;
+                        //Kelvin to Celsius Conversion
+                        case "Kelvin":
+                            convertedValue = tempInputs[i] - 273.15;
+                            resultText.innerHTML += `Result: ${convertedValue.toFixed(2)}°C <br />`;
+                            break;
+                    }
+                    break;
+                case "Kelvin":
+                    switch(convertFromList[i])
+                    {
+                        //Celsius to Kelvin Conversion
+                        case "Celsius":
+                            convertedValue = tempInputs[i] + 273.15;
+                            resultText.innerHTML += `Result: ${convertedValue}K <br />`;
+                            break;
+                        //Fahrenheit to Kelvin Conversion
+                        case "Fahrenheit":
+                            convertedValue = (tempInputs[i] - 32) * 5/9 + 273.15;
+                            resultText.innerHTML += `Result: ${convertedValue.toFixed(3)}K <br />`;
+                            break;
+                    }
+                    break;
+            }
         }
     }
 })
@@ -121,4 +141,18 @@ resetButton.addEventListener("click", () =>
 {
     userTemperature.value = "";
     resultText.innerHTML = "";
+
+    inputRows.innerHTML =  `<br />
+                            <input type="text" name="temperatureInput" id="temperatureInput" placeholder="Temperature to Convert">
+                            <select name="temperatureInputType" id="temperatureInputType">
+                                <option value="Fahrenheit">Fahrenheit</option>
+                                <option value="Celsius">Celsius</option>
+                                <option value="Kelvin">Kelvin</option>
+                            </select>
+                            <label for="temperaturesConversionType">convert to:</label>
+                            <select name="temperaturesConversionType" id="temperaturesConversionType">
+                                <option value="Fahrenheit">Fahrenheit</option>
+                                <option value="Celsius">Celsius</option>
+                                <option value="Kelvin">Kelvin</option>
+                            </select>`;
 })

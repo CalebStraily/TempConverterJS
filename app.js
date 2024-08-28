@@ -4,6 +4,51 @@ let conversionType = document.getElementById("temperaturesConversionType");
 let submitButton = document.getElementById("submit");
 let resultText = document.getElementById("resultArea");
 let resetButton = document.getElementById("reset");
+let addButton = document.getElementById("addRow");
+let removeButton = document.getElementById("removeRow");
+let inputRows = document.getElementById("inputRows");
+let row = document.getElementsByClassName("new-row")
+
+let rowCount = 1;
+
+addButton.addEventListener("click", () =>
+{
+    rowCount++;
+
+    let newRow = document.createElement("div");
+    newRow.className = 'col-12 text-center new-row';
+    newRow.id = 'row-' + rowCount;
+
+    newRow.innerHTML = `<br />
+                        <input type="text" name="temperatureInput" id="temperatureInput" placeholder="Temperature to Convert">
+                        <select name="temperatureInputType" id="temperatureInputType">
+                            <option value="Fahrenheit">Fahrenheit</option>
+                            <option value="Celsius">Celsius</option>
+                            <option value="Kelvin">Kelvin</option>
+                        </select>
+                        <label for="temperaturesConversionType">convert to:</label>
+                        <select name="temperaturesConversionType" id="temperaturesConversionType">
+                            <option value="Fahrenheit">Fahrenheit</option>
+                            <option value="Celsius">Celsius</option>
+                            <option value="Kelvin">Kelvin</option>
+                        </select>`;
+
+    inputRows.appendChild(newRow);
+
+    console.log(inputRows);
+})
+
+removeButton.addEventListener("click", () =>
+{
+    let lastChild = inputRows.lastElementChild;
+    let rowCheck = document.getElementById("row-1");
+
+    if (lastChild != rowCheck)
+    {
+        inputRows.removeChild(lastChild);
+        rowCount--;
+    }
+})
 
 submitButton.addEventListener("click", () =>
 {

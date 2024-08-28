@@ -23,6 +23,11 @@
     background-image: url(./media/pattern.jpg);
 }
 
+#inputRows
+{
+    justify-content: center;
+}
+
 .math-img
 {
     margin-top: 40px;

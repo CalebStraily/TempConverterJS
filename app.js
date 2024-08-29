@@ -1,13 +1,10 @@
 let userTemperature = document.getElementById("temperatureInput");
-let userTempType = document.getElementById("temperatureInputType");
-let conversionType = document.getElementById("temperaturesConversionType");
 let submitButton = document.getElementById("submit");
 let resultText = document.getElementById("resultArea");
 let resetButton = document.getElementById("reset");
 let addButton = document.getElementById("addRow");
 let removeButton = document.getElementById("removeRow");
 let inputRows = document.getElementById("inputRows");
-let row = document.getElementsByClassName("new-row")
 let rowCount = 1;
 
 addButton.addEventListener("click", () =>
@@ -74,7 +71,6 @@ submitButton.addEventListener("click", () =>
         convertToList.push(conversionsTo[i].value);
     }
 
-    //resets the result text to only contain "Result:"
     resultText.innerHTML = "";
 
     for (let i = 0; i < inputRows.children.length; i++)

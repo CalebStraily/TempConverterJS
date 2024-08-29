@@ -142,17 +142,19 @@ resetButton.addEventListener("click", () =>
     userTemperature.value = "";
     resultText.innerHTML = "";
 
-    inputRows.innerHTML =  `<br />
-                            <input type="text" name="temperatureInput" id="temperatureInput" placeholder="Temperature to Convert">
-                            <select name="temperatureInputType" id="temperatureInputType">
-                                <option value="Fahrenheit">Fahrenheit</option>
-                                <option value="Celsius">Celsius</option>
-                                <option value="Kelvin">Kelvin</option>
-                            </select>
-                            <label for="temperaturesConversionType">convert to:</label>
-                            <select name="temperaturesConversionType" id="temperaturesConversionType">
-                                <option value="Fahrenheit">Fahrenheit</option>
-                                <option value="Celsius">Celsius</option>
-                                <option value="Kelvin">Kelvin</option>
-                            </select>`;
+    inputRows.innerHTML =  `<div class="col-12 text-center" id="row-1">
+                                <br />
+                                <input type="text" name="temperatureInput" id="temperatureInput" placeholder="Temperature to Convert">
+                                <select name="temperatureInputType" id="temperatureInputType">
+                                    <option value="Fahrenheit">Fahrenheit</option>
+                                    <option value="Celsius">Celsius</option>
+                                    <option value="Kelvin">Kelvin</option>
+                                </select>
+                                <label for="temperaturesConversionType">convert to:</label>
+                                <select name="temperaturesConversionType" id="temperaturesConversionType">
+                                    <option value="Fahrenheit">Fahrenheit</option>
+                                    <option value="Celsius">Celsius</option>
+                                    <option value="Kelvin">Kelvin</option>
+                                </select>
+                            </div>`;
 })
